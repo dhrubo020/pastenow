@@ -9,23 +9,20 @@ var express = require('express')
 var app = express();
 var mysql      = require('mysql');
 var bodyParser=require("body-parser");
-var connection = mysql.createConnection({
+/*var connection = mysql.createConnection({
               host     : 'localhost',
               user     : 'root',
               password : '',
               database : 'pastenow'
-            });
-var DATABASE_URL = "host=ec2-107-21-255-181.compute-1.amazonaws.com port=5432 dbname=db7mmsari6eldp user=inqdxhknahtldu password=583146ca334efbc3dc8cc19a937ecd76e67c6eb5f258e29d1e328234736b39b8";
+            });*/
+const connectionString = 'postgresql://inqdxhknahtldu:583146ca334efbc3dc8cc19a937ecd76e67c6eb5f258e29d1e328234736b39b8@ec2-107-21-255-181.compute-1.amazonaws.com:5432/db7mmsari6eldp'
+//var DATABASE_URL = "host= port= dbname=db7mmsari6eldp user= password=";
 //$dbconnection = pg_connect($conn_string);
 
 const { Pool, Client } = require('pg')
 
     const db = new Pool({
-      connectionString: DATABASE_URL,
-      ssl: false,
-      max: 20,
-      idleTimeoutMillis: 30000,
-      connectionTimeoutMillis: 2000,
+      connectionString: connectionString
     });
 
 
