@@ -25,17 +25,17 @@ const { Pool, Client } = require('pg')
       connectionString: connectionString
     });
 
-
+app.get('/',"hello");
 //connection.connect();
 //global.db = connection;
  
 // all environments
-app.set('port', process.env.PORT || 8080);
+/*app.set('port', process.env.PORT || 8080);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
-//-----use--------
+
 app.use(express.static(path.join(__dirname, 'public'))); // configure express to use public folder
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -48,4 +48,5 @@ app.get('/',routes.home);
 app.post('/send',routes.call_send);
 
 
-app.listen(8080);
+*/
+app.listen(80);
