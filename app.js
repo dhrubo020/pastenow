@@ -15,10 +15,22 @@ var connection = mysql.createConnection({
               password : '',
               database : 'pastenow'
             });
- 
-connection.connect();
- 
-global.db = connection;
+var DATABASE_URL = "host=ec2-107-21-255-181.compute-1.amazonaws.com port=5432 dbname=db7mmsari6eldp user=inqdxhknahtldu password=583146ca334efbc3dc8cc19a937ecd76e67c6eb5f258e29d1e328234736b39b8";
+//$dbconnection = pg_connect($conn_string);
+
+const { Pool, Client } = require('pg')
+
+    const db = new Pool({
+      connectionString: DATABASE_URL,
+      ssl: false,
+      max: 20,
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 2000,
+    });
+
+
+//connection.connect();
+//global.db = connection;
  
 // all environments
 app.set('port', process.env.PORT || 8080);
