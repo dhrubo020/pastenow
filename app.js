@@ -48,15 +48,7 @@ let http = require('http')
   , routes = require('./routes')
   , path = require('path');
 
-var app = http.createServer(function (req, res) {
- 
-        res.writeHead(200, {
-            'Content-Type': 'text/plain'
-        });
-        res.write('hello heroku!', 'utf-8');
-        res.end();
- 
-    });
+var app = express();
 var bodyParser=require("body-parser");
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
