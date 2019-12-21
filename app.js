@@ -38,10 +38,8 @@ app.get('/',routes.home);
 app.post('/send',routes.call_send);
 
 
-*/
 app.get('/',"hello");
 app.listen(8080);
-//-------------------------------------------------------------------------------
 */
 
 // using the http module
