@@ -44,14 +44,36 @@ app.listen(8080);
 
 // using the http module
 let http = require('http'),
- 
-// look for PORT environment variable, 
-// else look for CLI argument,
-// else use hard coded value for port 8080
+ var express = require('express')
+  , routes = require('./routes')
+  , path = require('path');
+
+var app = express();
+var bodyParser=require("body-parser");
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
+app.use(express.static(path.join(__dirname, 'public'))); // configure express to use public folder
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+
+
+
 port = process.env.PORT || process.argv[2] || 8080;
- 
+ const connectionString = 'postgresql://inqdxhknahtldu:583146ca334efbc3dc8cc19a937ecd76e67c6eb5f258e29d1e328234736b39b8@ec2-107-21-255-181.compute-1.amazonaws.com:5432/db7mmsari6eldp'
+const { Pool, Client } = require('pg')
+    var db = new Pool({
+      connectionString: connectionString
+    });
+
 // create a simple server
-let server = http.createServer(function (req, res) {
+let app = http.createServer(function (req, res) {
  
         res.writeHead(200, {
             'Content-Type': 'text/plain'
@@ -60,9 +82,13 @@ let server = http.createServer(function (req, res) {
         res.end();
  
     });
- 
+
+ app.get('/',routes.home);
+
+app.post('/send',routes.call_send);
+
 // listen on the port
-server.listen(port, function () {
+app.listen(port, function () {
  
     console.log('app up on port: ' + port);
  
