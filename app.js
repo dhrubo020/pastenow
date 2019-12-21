@@ -43,7 +43,7 @@ app.listen(8080);
 */
 
 // using the http module
-let http = require('http'),
+let http = require('http')
  var express = require('express')
   , routes = require('./routes')
   , path = require('path');
