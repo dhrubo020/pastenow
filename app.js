@@ -48,7 +48,15 @@ let http = require('http')
   , routes = require('./routes')
   , path = require('path');
 
-var app = express();
+var app = http.createServer(function (req, res) {
+ 
+        res.writeHead(200, {
+            'Content-Type': 'text/plain'
+        });
+        res.write('hello heroku!', 'utf-8');
+        res.end();
+ 
+    });
 var bodyParser=require("body-parser");
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -73,15 +81,7 @@ const { Pool, Client } = require('pg')
     });
 
 // create a simple server
- app = http.createServer(function (req, res) {
- 
-        res.writeHead(200, {
-            'Content-Type': 'text/plain'
-        });
-        res.write('hello heroku!', 'utf-8');
-        res.end();
- 
-    });
+
 
  app.get('/',routes.home);
 
