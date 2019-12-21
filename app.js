@@ -73,7 +73,7 @@ const { Pool, Client } = require('pg')
     });
 
 // create a simple server
-let app = http.createServer(function (req, res) {
+ app = http.createServer(function (req, res) {
  
         res.writeHead(200, {
             'Content-Type': 'text/plain'
